@@ -34,10 +34,20 @@ function App() {
         setOutput("");
         setDownFiles([]);
         await runCommandAndOutput(["--version"]);
-        try { Module.FS.rmdir("/tmp") } catch (e) { }
-        try { Module.FS.rmdir("/res") } catch (e) { }
         Module.FS.mkdirTree("/tmp");
         Module.FS.mkdirTree("/res");
+        // clear the files in /tmp and /res
+        let _files = Module.FS.readdir("/tmp");
+        for (let file of _files) {
+            if(file=="."||file=="..") continue;
+            Module.FS.unlink("/tmp/"+file);
+        }
+        _files = Module.FS.readdir("/res");
+        for (let file of _files) {
+            if(file=="."||file=="..") continue;
+            Module.FS.unlink("/res/"+file);
+        }
+        Module.FS.chdir("/");
         let objFiles = [];
         files.forEach((file) => {
             if (file.name.endsWith(".obj")) {
