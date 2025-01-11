@@ -26,6 +26,11 @@ function App() {
         }
         ModulePatcher._printErr = (msg) => {
             setOutput((output) => output + "[错误]" + msg + "\n");
+            if(msg.startsWith("Aborted")){
+                mdui.snackbar({
+                    message: '转换失败'+msg,
+                })
+            }
         }
         Module.callMain(command);
     };
@@ -59,11 +64,13 @@ function App() {
             Module.FS.writeFile("/tmp/" + file.name, data);
         }
         for (let filename of objFiles) {
-            let cmd=["/tmp/" + filename, "/res/" + filename.replace(".obj", ".vox"), "-r", `${resolution}`,"-s",strat,"-p",permutation, "-j", "0"];
+            Module.FS.chdir("/tmp");
+            let cmd=[filename, "/res/" + filename.replace(".obj", ".vox"), "-r", `${resolution}`,"-s",strat,"-p",permutation, "-j", "0"];
             ModulePatcher.print(`正在转换 ${filename}`);
             ModulePatcher.print(`wasm> obj2voxel ${cmd.join(" ")}`);
             await runCommandAndOutput(cmd);
         }
+        Module.FS.chdir("/");
         Module.FS.readdir("/res").forEach((file) => {
             if (file.endsWith(".vox")) {
                 console.log(file);
@@ -88,8 +95,8 @@ function App() {
     }
     return <Layout title={"在线obj转vox"}>
         <div class="mdui-prose">
-            <p>将obj文件转换为vox文件，利用WebAssembly。你可以上传多个文件，如果你的模型有mtl也可以一同上传（但如果存在texture之类文件夹的话需要自行修改路径）</p>
-            <hr style={"margin-top:0px;"} />
+            <p>将obj文件转换为vox文件，利用WebAssembly。你可以上传多个文件，如果你的模型有mtl也可以一同上传（但如果存在texture之类的话也许需要修改mtl中的路径再上传texture）</p>
+            <p>tips: 如果无法转换的话就把对应的mtl移除试试</p>
         </div>
         <div style={"padding: 32px;"}>
             <h3>Step1: 上传</h3>
