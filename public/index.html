@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN" class="mdui-theme-auto">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+  <meta name="renderer" content="webkit" />
+  <title>在线obj转vox</title>
+  <link rel="stylesheet" href="https://v.tobylai.fun/css/font-material-icon-filled/MaterialIconFilled.css">
+  <link rel="stylesheet" href="https://esm.sh/mdui@2/mdui.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/2.1.3/mdui.global.js"></script>
+  <style>
+    /*禁用mdui对code的样式，因为它干扰了prism.js*/
+    .mdui-prose pre code {
+      background-color: transparent;
+      padding: 0px 0px;
+    }
+  </style>
+</head>
+
+<body></body>
+<script type="importmap">
+    {
+      "imports": {
+        "preact": "https://esm.sh/preact@10.23.1",
+        "preact/": "https://esm.sh/preact@10.23.1/",
+        "react": "https://esm.sh/preact@10.23.1/compat",
+        "react/": "https://esm.sh/preact@10.23.1/compat/",
+        "react-dom": "https://esm.sh/preact@10.23.1/compat"
+      }
+    }
+  </script>
+<script src="/assets/modobj2voxel.js"></script>
+<script type="module" src="dist/App.js"></script>
+
+</html>

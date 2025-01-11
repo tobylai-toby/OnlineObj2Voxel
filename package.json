@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "src/App.jsx",
+  "scripts": {
+    "build": "esbuild src/App.jsx --bundle --outdir=public/dist --platform=browser --format=esm --external:preact",
+    "serve": "esbuild src/App.jsx --bundle --outdir=public/dist --platform=browser --format=esm --external:preact --serve --watch --servedir=public"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@bjorn3/browser_wasi_shim": "^0.3.0",
+    "mdui": "^2.1.3",
+    "preact": "^10.25.4",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+    "react-dropzone": "^14.3.5",
+    "react-scroll-to-bottom": "^4.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2"
+  }
+}
