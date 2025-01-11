@@ -148,6 +148,8 @@ function App() {
                 <hr style={"margin: 0px;"}></hr>
                 {/* <pre id="output"><code>{output}</code></pre> */}
                 <TerminalOutput output={output}></TerminalOutput>
+                <hr />
+                <a href="https://github.com/tobylai-toby/OnlineObj2Voxel">Open-source on Github ↗</a>
             </div>
         </div>
     </Layout>
